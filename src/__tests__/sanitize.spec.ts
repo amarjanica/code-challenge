@@ -1,43 +1,43 @@
-import { asGrid, removeLeadingWhitespace } from "@challenge/sanitize";
+import { asGrid, removeLeadingWhitespace } from '@challenge/sanitize';
 
-describe("Sanitize", () => {
-  describe("removeLeadingWhitespace", () => {
-    it("should trim everything", () => {
+describe('Sanitize', () => {
+  describe('removeLeadingWhitespace', () => {
+    it('should trim everything', () => {
       const value = `
 
 `;
       const out = removeLeadingWhitespace(value);
 
-      expect(out).toBe("");
+      expect(out).toBe('');
     });
 
-    it("should only return trimmed input", () => {
+    it('should only return trimmed input', () => {
       const value = `
 123
 123`;
 
       const out = removeLeadingWhitespace(value);
 
-      expect(out).toBe("123\n123".trim());
+      expect(out).toBe('123\n123'.trim());
     });
 
-    it("should remove leading whitespace", () => {
+    it('should remove leading whitespace', () => {
       const value = `
     aaa
   bbb`;
 
       const out = removeLeadingWhitespace(value);
 
-      expect(out).toBe("  aaa\nbbb");
+      expect(out).toBe('  aaa\nbbb');
     });
   });
 
-  describe("asGrid", () => {
-    it("should convert an empty string", () => {
-      expect(asGrid("")).toStrictEqual([]);
+  describe('asGrid', () => {
+    it('should convert an empty string', () => {
+      expect(asGrid('')).toStrictEqual([]);
     });
 
-    it("should convert a multiline empty string", () => {
+    it('should convert a multiline empty string', () => {
       expect(
         asGrid(`
 
@@ -45,7 +45,7 @@ describe("Sanitize", () => {
       ).toStrictEqual([]);
     });
 
-    it("should convert a basic example multiline string", () => {
+    it('should convert a basic example multiline string', () => {
       expect(
         asGrid(`
 @---A---+
@@ -54,15 +54,15 @@ x-B-+   C
     |   |
     +---+`)
       ).toStrictEqual([
-        ["@", "-", "-", "-", "A", "-", "-", "-", "+"],
-        [" ", " ", " ", " ", " ", " ", " ", " ", "|"],
-        ["x", "-", "B", "-", "+", " ", " ", " ", "C"],
-        [" ", " ", " ", " ", "|", " ", " ", " ", "|"],
-        [" ", " ", " ", " ", "+", "-", "-", "-", "+"],
+        ['@', '-', '-', '-', 'A', '-', '-', '-', '+'],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|'],
+        ['x', '-', 'B', '-', '+', ' ', ' ', ' ', 'C'],
+        [' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', '|'],
+        [' ', ' ', ' ', ' ', '+', '-', '-', '-', '+'],
       ]);
     });
 
-    it("should convert a go straight through intersections string", () => {
+    it('should convert a go straight through intersections string', () => {
       expect(
         asGrid(`
 @
@@ -73,17 +73,17 @@ A |    |
   |      |
   +---D--+`)
       ).toStrictEqual([
-        ["@", " ", " ", " ", " ", " ", " ", " ", " ", " "],
-        ["|", " ", "+", "-", "C", "-", "-", "+", " ", " "],
-        ["A", " ", "|", " ", " ", " ", " ", "|", " ", " "],
-        ["+", "-", "-", "-", "B", "-", "-", "+", " ", " "],
-        [" ", " ", "|", " ", " ", " ", " ", " ", " ", "x"],
-        [" ", " ", "|", " ", " ", " ", " ", " ", " ", "|"],
-        [" ", " ", "+", "-", "-", "-", "D", "-", "-", "+"],
+        ['@', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' '],
+        ['|', ' ', '+', '-', 'C', '-', '-', '+', ' ', ' '],
+        ['A', ' ', '|', ' ', ' ', ' ', ' ', '|', ' ', ' '],
+        ['+', '-', '-', '-', 'B', '-', '-', '+', ' ', ' '],
+        [' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', 'x'],
+        [' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', ' ', '|'],
+        [' ', ' ', '+', '-', '-', '-', 'D', '-', '-', '+'],
       ]);
     });
 
-    it("should convert goonies", () => {
+    it('should convert goonies', () => {
       expect(
         asGrid(`
     +-O-N-+
@@ -95,14 +95,14 @@ A |    |
             |
             x`)
       ).toStrictEqual([
-        [" ", " ", " ", " ", "+", "-", "O", "-", "N", "-", "+", " ", " "],
-        [" ", " ", " ", " ", "|", " ", " ", " ", " ", " ", "|", " ", " "],
-        [" ", " ", " ", " ", "|", " ", " ", " ", "+", "-", "I", "-", "+"],
-        ["@", "-", "G", "-", "O", "-", "+", " ", "|", " ", "|", " ", "|"],
-        [" ", " ", " ", " ", "|", " ", "|", " ", "+", "-", "+", " ", "E"],
-        [" ", " ", " ", " ", "+", "-", "+", " ", " ", " ", " ", " ", "S"],
-        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "|"],
-        [" ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", " ", "x"],
+        [' ', ' ', ' ', ' ', '+', '-', 'O', '-', 'N', '-', '+', ' ', ' '],
+        [' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', ' ', ' ', '|', ' ', ' '],
+        [' ', ' ', ' ', ' ', '|', ' ', ' ', ' ', '+', '-', 'I', '-', '+'],
+        ['@', '-', 'G', '-', 'O', '-', '+', ' ', '|', ' ', '|', ' ', '|'],
+        [' ', ' ', ' ', ' ', '|', ' ', '|', ' ', '+', '-', '+', ' ', 'E'],
+        [' ', ' ', ' ', ' ', '+', '-', '+', ' ', ' ', ' ', ' ', ' ', 'S'],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', '|'],
+        [' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', ' ', 'x'],
       ]);
     });
   });

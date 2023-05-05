@@ -1,5 +1,5 @@
-import { asGrid } from "@challenge/sanitize";
-import { Point } from "@challenge/point";
+import { asGrid } from '@challenge/sanitize';
+import { Point } from '@challenge/point';
 
 export class Grid {
   constructor(private inner: string[][]) {
@@ -13,7 +13,7 @@ export class Grid {
 
   // returns a string representation from given coordinates.
   ofPoints(points: Point[]): string {
-    return points.reduce((agg, point) => agg + this.item(point), "");
+    return points.reduce((agg, point) => agg + this.item(point), '');
   }
 
   get rows() {

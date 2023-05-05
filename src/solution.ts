@@ -3,10 +3,10 @@
  * as instructed in https://github.com/softwaresauna/code-challenge
  * @param asciiArt
  */
-import { Grid } from "@challenge/grid";
-import { followPath } from "@challenge/paths";
-import { Point } from "@challenge/point";
-import { UPPERCASE_LETTERS_PATTERN } from "@challenge/patterns";
+import { Grid } from '@challenge/grid';
+import { followPath } from '@challenge/paths';
+import { Point } from '@challenge/point';
+import { UPPERCASE_LETTERS_PATTERN } from '@challenge/patterns';
 
 export function solution(asciiArt: string): string {
   const grid = Grid.fromText(asciiArt);
@@ -23,7 +23,7 @@ export function solution(asciiArt: string): string {
       }
       return [letters, usedPositions];
     },
-    ["", initialUsedPositions]
+    ['', initialUsedPositions]
   );
 
   return letters;

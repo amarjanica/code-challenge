@@ -3,9 +3,9 @@
  * @param grid
  * @param search
  */
-import { Grid } from "@challenge/grid";
-import { Point } from "@challenge/point";
-import { ALLOWED_CHARACTERS_PATTERN, UPPERCASE_LETTERS_PATTERN } from "@challenge/patterns";
+import { Grid } from '@challenge/grid';
+import { Point } from '@challenge/point';
+import { ALLOWED_CHARACTERS_PATTERN, UPPERCASE_LETTERS_PATTERN } from '@challenge/patterns';
 
 function getPossibleNeighbours(currDirection: Point, lastElement: string) {
   let possibleNeighbours: Point[] = Point.moves();
@@ -16,19 +16,19 @@ function getPossibleNeighbours(currDirection: Point, lastElement: string) {
 }
 
 export function followPath(grid: Grid): Point[] {
-  const startPoint = grid.findUnique("@"); // Fails if start is not found or multiple starts
-  grid.findUnique("x"); // Fails if end is not found or multiple ends
+  const startPoint = grid.findUnique('@'); // Fails if start is not found or multiple starts
+  grid.findUnique('x'); // Fails if end is not found or multiple ends
 
   // Helper recursion, returns visited positions
   function findPath(currDirection: Point, visitedPositions: Point[], grid: Grid): Point[] {
     let lastPoint = visitedPositions[visitedPositions.length - 1];
     let lastElement = grid.item(lastPoint);
     let possibleNeighbours = getPossibleNeighbours(currDirection, lastElement)
-      .map(lastPoint.move)
+      .map(lastPoint.add)
       .filter(grid.isInBounds)
-      .filter((p) => grid.item(p) !== " ");
+      .filter((p) => grid.item(p) !== ' ');
 
-    if (lastElement === "+") {
+    if (lastElement === '+') {
       const elementBeforeIntersection = visitedPositions[visitedPositions.length - 2];
       possibleNeighbours = possibleNeighbours.filter(elementBeforeIntersection.ne);
     } else if (UPPERCASE_LETTERS_PATTERN.test(lastElement)) {
@@ -36,17 +36,17 @@ export function followPath(grid: Grid): Point[] {
     }
 
     if (possibleNeighbours.length == 0) {
-      throw new Error("Out of moves!");
+      throw new Error('Out of moves!');
     }
 
     const nextPoint = possibleNeighbours[0];
     currDirection = possibleNeighbours[0].subtract(lastPoint);
     const nextElement = grid.item(nextPoint);
 
-    if (nextElement === "x") {
+    if (nextElement === 'x') {
       visitedPositions.push(nextPoint);
       return visitedPositions;
-    } else if (nextElement !== " ") {
+    } else if (nextElement !== ' ') {
       visitedPositions.push(nextPoint);
     }
 

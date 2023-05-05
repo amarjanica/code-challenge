@@ -3,7 +3,7 @@ export class Point {
     if (!inner || inner.length != 2) {
       throw new Error(`Invalid point. ${inner} given!`);
     }
-    this.move = this.move.bind(this);
+    this.add = this.add.bind(this);
     this.ne = this.ne.bind(this);
   }
 
@@ -21,7 +21,7 @@ export class Point {
     return this.inner[1];
   }
 
-  move(other: Point): Point {
+  add(other: Point): Point {
     return new Point([this.row + other.row, this.col + other.col]);
   }
 
@@ -35,9 +35,5 @@ export class Point {
 
   toString(): string {
     return `${this.row},${this.col}`;
-  }
-
-  eq(other: Point) {
-    return this.row == other.row && this.col == other.col;
   }
 }

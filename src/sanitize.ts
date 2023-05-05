@@ -3,7 +3,7 @@
  * @param input string
  */
 export function removeLeadingWhitespace(input: string) {
-  const lines = input.split("\n").filter((it) => it.trim().length > 0);
+  const lines = input.split('\n').filter((it) => it.trim().length > 0);
   // todo: refactor, reduce doesn't need to continue if zero is reached
   const maybeIndentSize = lines.reduce((min, line) => {
     const countSpaces = countLeadingWhitespaces(line);
@@ -12,7 +12,7 @@ export function removeLeadingWhitespace(input: string) {
 
   const indentSize = isFinite(maybeIndentSize) ? maybeIndentSize : 0;
   const indentedLines = lines.map((line) => line.slice(indentSize));
-  return indentedLines.join("\n");
+  return indentedLines.join('\n');
 }
 
 /**
@@ -29,7 +29,7 @@ export function countLeadingWhitespaces(line: string): number {
  * @return grid Grid
  */
 export function asGrid(input: string): string[][] {
-  const lines: string[] = removeLeadingWhitespace(input).split("\n");
+  const lines: string[] = removeLeadingWhitespace(input).split('\n');
   const [min, max] = lines.reduce(
     ([min, max], line) => {
       const startIndex = line.search(/\S/); // Find the index of the first non-whitespace character
@@ -45,5 +45,5 @@ export function asGrid(input: string): string[][] {
 
   const maxLength = Math.abs(max - min) + 1; // e.g. if index 0 and index 3, then there are 4 elements
 
-  return lines.map((line) => Array.from({ length: maxLength }, (_, i) => (i >= line.length ? " " : line.charAt(i))));
+  return lines.map((line) => Array.from({ length: maxLength }, (_, i) => (i >= line.length ? ' ' : line.charAt(i))));
 }
